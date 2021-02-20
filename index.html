@@ -1,0 +1,204 @@
+<html>
+    <head>
+        <title>Register Page</title>
+        <style>
+           body{
+               margin: 0;
+               padding: 0;
+               background-image: url(b5.jpg);
+               background-attachment: fixed;
+               background-repeat: no-repeat;
+               background-size: cover;
+           }
+           
+            h1{
+                text-align: center;
+                font-size: 30px;
+                color: #00F260;
+            }
+            span{
+                color: red;
+            }
+           
+            fieldset{
+                margin-left: 25%;
+                margin-right: 25%;
+                margin-top: 10%;
+                margin-bottom: 10%;
+                background-color: white;
+                border: solid 2px black;
+                text-align: center;
+                color:#0575E6;
+
+            }
+            .submit{
+                border-radius: 12px;
+                padding: 6px;
+                font-size: 20px;
+                margin-left:17px;
+                margin-top: 10px;
+                color: white;
+                background: #00F260;  
+                background: -webkit-linear-gradient(to right, #0575E6, #00F260); 
+                background: linear-gradient(to right, #0575E6, #00F260);
+
+            }
+        </style>
+        <script>
+            function validate() {
+                var a=0
+                var Fname=document.getElementById("Fname").value;
+                var Lname=document.getElementById("Lname").value;
+                var Email=document.getElementById("email").value;
+                var Pword=document.getElementById("Pword").value;
+                var CnPword=document.getElementById("CnPword").value;
+                var MNo=document.getElementById("MNo").value;
+                var Address=document.getElementById("Address").value;
+                var City=document.getElementById("city").value;
+                var State=document.getElementById("state").value;
+                var Code=document.getElementById("code").value;
+                var regx=/^([a-z 0-9 \.-]+)@([a-z 0-9 -]+).([a-z]{2,50})(.[a-z{2,8}])?$/;
+                var regx1=/^\d{10}$/;
+                var regx2=/^([\d]{6,10})$/;
+                if(Fname.trim()==""){
+                    document.getElementById("empty").innerHTML="First Name cannot be empty";
+                    document.getElementById("Fname").style.border="2px solid red";
+                    a++;
+                }
+                else{
+                    document.getElementById("Fname").style.border="2px solid green";
+                }
+                if (Lname.trim()==""){
+                    document.getElementById("last").innerHTML="Last Name cannot be empty";
+                    document.getElementById("Lname").style.border="2px solid red";
+                    a++;
+                }
+                else{
+                    document.getElementById("Lname").style.border="2px solid green";
+                }
+                if (Email.trim()==""){
+                    document.getElementById("mail").innerHTML="Email cannot be empty";
+                    document.getElementById("email").style.border="2px solid red";
+                    a++;
+                }
+                else if (!regx.test(Email)){
+                    document.getElementById("mail").innerHTML="Not a valid email";
+                    document.getElementById("email").style.border="2px solid red";
+                    a++;
+                }
+                else{
+                    document.getElementById("email").style.border="2px solid green";
+                }
+                if (Pword.trim()==""){
+                    document.getElementById("pass").innerHTML="Password cannot be empty";
+                    document.getElementById("Pword").style.border="2px solid red";
+                    a++;
+                }
+                else{
+                    document.getElementById("Pword").style.border="2px solid green";
+                }
+                if (CnPword.trim()==""){
+                    document.getElementById("cpass").innerHTML="Confirm password cannot be empty";
+                    document.getElementById("CnPword").style.border="2px solid red";
+                    a++;
+                }
+                else if (Pword.trim()!=CnPword.trim()) {
+                    document.getElementById("cpass").innerHTML="Confirm password is different from password";
+                    document.getElementById("CnPword").style.border="2px solid red";
+                    a++;
+                }
+                else{
+                    document.getElementById("CnPword").style.border="2px solid green";
+                }
+                if (MNo.trim()==""){
+                    document.getElementById("no").innerHTML="Mobile Number cannot be empty";
+                    document.getElementById("MNo").style.border="2px solid red";
+                    a++;
+                }
+                else if(!regx1.test(MNo)){
+                    document.getElementById("no").innerHTML="Not a valid number";
+                    document.getElementById("MNo").style.border="2px solid red";
+                    a++;
+                }
+                else{
+                    document.getElementById("MNo").style.border="2px solid green";
+                }
+                if (Address.trim()==""){
+                    document.getElementById("add").innerHTML="Address cannot be empty";
+                    document.getElementById("Address").style.border="2px solid red";
+                    a++;
+                }
+                else{
+                    document.getElementById("Address").style.border="2px solid green";
+                }
+                if (City.trim()==""){
+                    document.getElementById("City").innerHTML="City cannot be empty";
+                    document.getElementById("city").style.border="2px solid red";
+                    a++;
+                }
+                else{
+                    document.getElementById("city").style.border="2px solid green";
+                }
+                if (State.trim()==""){
+                    document.getElementById("State").innerHTML="State cannot be empty";
+                    document.getElementById("state").style.border="2px solid red";
+                    a++;
+                }
+                else{
+                    document.getElementById("state").style.border="2px solid green";
+                }
+                if (Code.trim()==""){
+                    document.getElementById("Code").innerHTML="Zip code cannot be empty";
+                    document.getElementById("code").style.border="2px solid red";
+                    a++;
+                }
+                else if(!regx2.test(Code)){
+                    document.getElementById("Code").innerHTML="Not a valid zip code";
+                    document.getElementById("code").style.border="2px solid red";
+                    a++;
+                }
+                else{
+                    document.getElementById("code").style.border="2px solid green";
+                }
+                if (a>0){
+                    return false;
+                }   
+                else{
+                    return true;
+                }          
+            }
+        </script>
+    </head>
+    <body>
+        <form method="POST" onsubmit="return validate()" action="main.html">
+            <fieldset>
+                <h1>REGISTER</h1>
+                First Name<span> *</span> :
+                <input type="text" placeholder="Firstname" id="Fname"> <span id="empty"></span><br><br>
+                Last Name<span> *</span> :
+                <input type="text" placeholder="Lastname" id="Lname"> <span id="last"></span><br><br>
+                Gender :
+                <input type="radio" name="Gender" value="Male">Male
+                <input type="radio" name="Gender" value="Female">Female<br><br>
+                Email<span> *</span> :
+                <input type="text" placeholder="Email Id" id="email"> <span id="mail"></span><br><br>
+                Password<span> *</span> :
+                <input type="password" placeholder="Password" id="Pword"> <span id="pass"></span><br><br>
+                Confirm Password<span> *</span> :
+                <input type="password" placeholder="Confirm Password" id="CnPword"> <span id="cpass"></span><br><br>
+                Mobile Number <span> *</span> : +91
+                <input type="text" placeholder="Mobile Number" id="MNo"> <span id="no"></span><br><br>
+                Address<span> *</span> :
+                <input type="text" placeholder="Address" id="Address"> <span id="add"></span><br><br>
+                City<span> *</span> :
+                <input type="text" placeholder="City" id="city"> <span id="City"></span><br><br>
+                State<span> *</span> :
+                <input type="text" placeholder="State" id="state"> <span id="State"></span><br><br>
+                Zip code<span> *</span> :
+                <input type="text" placeholder="Zip code" id="code"> <span id="Code"></span><br><br>
+            <input type="submit" value="Register" class="submit">
+            </fieldset>
+        </form>
+        
+    </body>
+</html>
